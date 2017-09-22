@@ -2,7 +2,7 @@
 
 namespace kit\models;
 
-class BaseModel extends Widget
+class BaseWidgetModel extends Widget
 {
 
     private $_dynamicAttributes = [];

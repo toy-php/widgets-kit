@@ -2,7 +2,7 @@
 
 namespace kit\models;
 
-class TestWidget extends BaseModel
+class TestWidget extends BaseWidgetModel
 {
 
 }
