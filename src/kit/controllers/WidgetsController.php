@@ -2,6 +2,7 @@
 
 namespace kit\controllers;
 
+use kit\helpers\Widgets;
 use kit\models\Preset;
 use kit\models\Widget;
 use yii\data\ActiveDataProvider;
@@ -33,11 +34,19 @@ class WidgetsController extends Controller
         ]);
     }
 
+    /**
+     * Настройка виджета
+     * @return int|mixed|\yii\console\Response
+     * @throws NotFoundHttpException
+     */
     public function actionSetting()
     {
-        /**
-         * todo вывод настроек виджета
-         */
+        $widgetId = \Yii::$app->request->get('widgetId');
+        $widget = Widget::findOne(['id' => $widgetId]);
+        if(empty($widget)){
+            throw new NotFoundHttpException();
+        }
+        return  \Yii::$app->runAction($widget->preset->controller . '/setting', [$widget->id]);
     }
 
     /**

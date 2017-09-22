@@ -2,8 +2,6 @@
 
 namespace kit\models;
 
-use kit\controllers\BaseWidgetController;
-use yii\base\Exception;
 use yii\db\ActiveRecord;
 
 /**
@@ -17,6 +15,7 @@ use yii\db\ActiveRecord;
  * @property string $description
  * @property bool $status
  *
+ * @property Group $group
  * @property Preset $preset
  *
  *
@@ -38,6 +37,14 @@ class Widget extends ActiveRecord
             [['groupId', 'presetId', 'name'], 'required'],
             [['groupId', 'name'], 'unique', 'targetAttribute' => ['groupId', 'name']]
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroup()
+    {
+        return $this->hasOne(Group::className(), ['id' => 'groupId']);
     }
 
     /**

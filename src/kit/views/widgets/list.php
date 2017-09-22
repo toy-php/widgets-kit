@@ -28,8 +28,11 @@ use yii\grid\GridView;
         [
             'class' => 'yii\grid\ActionColumn',
             'header' => 'Действия',
-            'template' => '{update}{remove}',
+            'template' => '{setting}{update}{remove}',
             'buttons' => [
+                'setting' => function ($url, $model) use ($groupId){
+                    return Html::a('Настроить', ['/kit/widgets/setting', 'widgetId' => $model->id]);
+                },
                 'update' => function ($url) use ($groupId){
                     $url = \kit\helpers\Uri::forUrl($url)
                         ->withAddParams(['groupId' => $groupId]);

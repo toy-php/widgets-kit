@@ -2,7 +2,7 @@
 
 namespace kit\controllers;
 
-use yii\base\Controller;
+use yii\web\Controller;
 
 abstract class BaseWidgetController extends Controller
 {
@@ -16,9 +16,8 @@ abstract class BaseWidgetController extends Controller
     /**
      * Настройка виджета
      * @param int $widgetId
-     * @return string
      */
-    abstract public function actionSetting(int $widgetId): string;
+    abstract public function actionSetting(int $widgetId);
 
     /**
      * Установка виджета

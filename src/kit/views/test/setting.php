@@ -1,7 +1,21 @@
 <?php
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
 /**
- * Created by PhpStorm.
- * User: user
- * Date: 22.09.17
- * Time: 10:09
+ * @var \kit\models\TestWidgetForm $model
+ * @var integer $groupId
  */
+?>
+
+<?php
+$form = ActiveForm::begin([
+    'id' => 'widget-form-setting',
+]);
+?>
+
+<?= $form->field($model, 'test')->input('text', ['placeholder' => 'Тест']) ?>
+
+<?= Html::submitButton( 'Сохранить')?>
+
+<?php ActiveForm::end();?>

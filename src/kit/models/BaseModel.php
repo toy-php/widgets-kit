@@ -16,6 +16,9 @@ class BaseModel extends Widget
             return parent::__get($name);
         }
         $attribute = $this->getDynamicAttribute($name);
+        if (empty($attribute)) {
+            return null;
+        }
         $value = $attribute->value->value;
         if (!empty($value)) {
             return $value;
@@ -53,6 +56,36 @@ class BaseModel extends Widget
         return isset($dynamicAttributes[$name])
             ? $dynamicAttributes[$name]
             : null;
+    }
+
+    /**
+     * Изменить/Добавить динамический атрибут
+     * @param string $name
+     * @param string $value
+     */
+    public function setDynamicAttribute(string $name, string $value)
+    {
+        $attribute = $this->getDynamicAttribute($name);
+        if (!empty($attribute)) {
+            return $this->updateDynamicAttribute($name, $value);
+        }
+        return $this->addDynamicAttribute($name, $value);
+    }
+
+    /**
+     * Изменить динамический атрибут
+     * @param string $name и
+     * @param mixed $value
+     */
+    public function updateDynamicAttribute($name, $value)
+    {
+        $event = $this->isNewRecord ? static::EVENT_AFTER_INSERT : static::EVENT_AFTER_UPDATE;
+
+        $attribute = $this->getDynamicAttribute($name);
+        if (!empty($attribute)) {
+            $attribute->value->value = $value;
+            $this->on($event, [$attribute->value, 'save']);
+        }
     }
 
     /**

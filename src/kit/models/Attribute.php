@@ -2,6 +2,7 @@
 
 namespace kit\models;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -55,17 +56,12 @@ class Attribute extends ActiveRecord
 
     /**
      * Получить объект значения атрибута
-     * @return Value|null
+     * @return ActiveQuery
      */
-    public function getValue(): ?Value
+    public function getValue()
     {
-        /** @var Value $value */
         $value = $this->hasOne(Value::className(), ['attributeId' => 'id'])
-            ->where(['widgetId' => $this->widgetId])
-            ->one();
-        if (empty($value)) {
-            return null;
-        }
+            ->where(['widgetId' => $this->widgetId]);
         return $value;
     }
 
