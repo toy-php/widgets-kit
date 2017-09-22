@@ -3,12 +3,12 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `widgets`.
+ * Handles the creation of table `widgets_attributes`.
  */
-class m170920_233520_create_presets_table extends Migration
+class m170920_223945_create_widgets_attributes_table extends Migration
 {
 
-    public $tableName = '{{%widgets}}';
+    public $tableName = '{{%widgets_attributes}}';
 
     /**
      * @inheritdoc
@@ -17,9 +17,7 @@ class m170920_233520_create_presets_table extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'name' => $this->string()->notNull(),
-            'description' => $this->text(),
-            'controller' =>$this->string()->notNull(),
+            'name' => $this->string()->notNull()
         ]);
     }
 

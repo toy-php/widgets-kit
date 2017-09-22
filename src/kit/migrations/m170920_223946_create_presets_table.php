@@ -5,10 +5,10 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `widgets`.
  */
-class m170920_224711_create_widgets_table extends Migration
+class m170920_223946_create_presets_table extends Migration
 {
 
-    public $tableName = '{{%widgets}}';
+    public $tableName = '{{%presets}}';
 
     /**
      * @inheritdoc
@@ -17,11 +17,9 @@ class m170920_224711_create_widgets_table extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'groupId' => $this->integer()->defaultValue(0),
-            'presetId' => $this->string()->notNull(),
             'name' => $this->string()->notNull(),
             'description' => $this->text(),
-            'status' => $this->integer(1)->notNull()->defaultValue(0)
+            'controller' =>$this->string()->notNull(),
         ]);
     }
 

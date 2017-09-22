@@ -19,13 +19,15 @@ class Preset extends ActiveRecord
 
     public static function tableName()
     {
-        return '{{%widgets}}';
+        return '{{%presets}}';
     }
 
     public function rules()
     {
         return [
-            [['name', 'description', 'controller'], 'string']
+            [['name', 'description', 'controller'], 'string'],
+            [['name', 'controller'], 'required'],
+            [['name'], 'unique'],
         ];
     }
 

@@ -11,8 +11,9 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $name
  * @property string $description
+ * @property bool $status
  *
- * @property Widget $widget
+ * @property Widget[] $widgets
  */
 class Group extends ActiveRecord
 {
@@ -25,7 +26,10 @@ class Group extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description'], 'string']
+            ['status', 'boolean'],
+            [['name', 'description'], 'string'],
+            [['name'], 'required'],
+            [['name'], 'unique']
         ];
     }
 

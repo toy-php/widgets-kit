@@ -3,12 +3,12 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `widgets_groups`.
+ * Handles the creation of table `widgets-groups`.
  */
 class m170920_223944_create_widgets_groups_table extends Migration
 {
 
-    public $tableName = '{{%widgets_groups}}';
+    public $tableName = '{{%widgets-groups}}';
 
     /**
      * @inheritdoc
